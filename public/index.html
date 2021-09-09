@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <title>{{"学习AngularJS 1.x"}}</title>
+    <style type="text/css">
+        /* 删除线 */
+        .strike {
+            text-decoration: line-through;
+        }
+
+        /* 粗体 */
+        .bold {
+            font-weight: bold;
+        }
+
+        /* 红色 */
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div ng-controller="FirstCtrl">
+    <input type="text" ng-model="data.style">
+    <div class="{{data.style}}">示例文本(可输入strike bold red)来调整样式</div>
+    <table>
+        <tr ng-repeat="x in list">
+            <td>{{x.name}}</td>
+            <td><input type="button" value="我是第{{$index}}行的按钮"
+                       ng-click="onClick($index)"></td>
+        </tr>
+    </table>
+
+    <!--过滤器-->
+    <h1>{{data.message | reverse}}</h1>
+    <input type="text" ng-model="data.message">
+
+
+    <!--select-->
+    <label>选择一个颜色（无空选项）:
+        <select ng-model="colorChosen" ng-options="color.name for color in colors">
+
+        </select>
+    </label>
+    <br>
+
+    当前选中的颜色: {{ colorChosen.name }}
+    <div style="border:solid 1px black; height:20px"
+         ng-style="{'background-color':colorChosen.color}">
+    </div>
+
+    <!-- 注意这里只加入了一个people的标签 -->
+    <people></people>
+</div>
+
+<script type="text/javascript" src="components/angular/angular.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
